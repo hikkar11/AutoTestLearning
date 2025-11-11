@@ -1,7 +1,6 @@
 package api;
 
 import api.pogo.*;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +15,13 @@ public class ReqresTest {
 
     @Test
     public void checkFormatImageTest(){
-        Specifications.installSpec(Specifications.requestSpec(URL), Specifications.responseSpecOk200());
         List<UserData> users = given()
+                .spec(Specifications.requestSpec(URL))
                 .when()
                 .get("api/users?page=2")
-                .then().log().all()
+                .then()
+                .spec(Specifications.responseSpecOk200())
+                .log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
 
         Assertions.assertTrue(users.stream().allMatch(x->x.getAvatar().endsWith("image.jpg")));
@@ -28,16 +29,18 @@ public class ReqresTest {
 
     @Test
     public void successRegTest(){
-        Specifications.installSpec(Specifications.requestSpec(URL), Specifications.responseSpecOk200());
         Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
 
         Register user = new Register("eve.holt@reqres.in", "pistol");
         SuccessReg successReg = given()
+                .spec(Specifications.requestSpec(URL))
                 .body(user)
                 .when()
                 .post("api/register")
-                .then().log().all()
+                .then()
+                .spec(Specifications.responseSpecOk200())
+                .log().all()
                 .extract().as(SuccessReg.class);
 
         Assertions.assertNotNull(successReg.getId());
@@ -49,14 +52,16 @@ public class ReqresTest {
 
     @Test
     public void unsuccessRegTest(){
-        Specifications.installSpec(Specifications.requestSpec(URL), Specifications.responseSpecError400());
 
         Register user = new Register("sydney@fife", "");
         UnSuccessReg unSuccessReg = given()
+                .spec(Specifications.requestSpec(URL))
                 .body(user)
                 .when()
                 .post("/api/register")
-                .then().log().all()
+                .then()
+                .spec(Specifications.responseSpecError400())
+                .log().all()
                 .extract().as(UnSuccessReg.class);
 
         Assertions.assertEquals("Missing password", unSuccessReg.getError());
@@ -64,12 +69,14 @@ public class ReqresTest {
 
     @Test
     public void sortedYearsTest(){
-        Specifications.installSpec(Specifications.requestSpec(URL), Specifications.responseSpecOk200());
 
         List<ColorsData> colors = given()
+                .spec(Specifications.requestSpec(URL))
                 .when()
                 .get("api/unknown")
-                .then().log().all()
+                .then()
+                .spec(Specifications.responseSpecOk200())
+                .log().all()
                 .extract().body().jsonPath().getList("data", ColorsData.class);
 
         List<Integer> years = colors.stream().map(ColorsData::getYear).collect(Collectors.toList());
@@ -80,11 +87,13 @@ public class ReqresTest {
 
     @Test
     public void deleteUserTest(){
-        Specifications.installSpec(Specifications.requestSpec(URL), Specifications.responseSpecUniq(204));
         given()
+                .spec(Specifications.requestSpec(URL))
                 .when()
                 .delete("api/users/2")
-                .then().log().all();
+                .then()
+                .spec(Specifications.responseSpecUniq(204))
+                .log().all();
     }
 
 
