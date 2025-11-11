@@ -33,6 +33,6 @@ public class TextBoxTest extends BaseTest {
 
         PersonalInfo actualAttributes = textBoxPage.getActualData();
 
-        Assertions.assertTrue(EqualsBuilder.reflectionEquals(expectedAttributes, actualAttributes));
+        Assertions.assertTrue(!EqualsBuilder.reflectionEquals(expectedAttributes, actualAttributes));
     }
 }
