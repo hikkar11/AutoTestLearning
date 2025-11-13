@@ -8,7 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LinksImagePage {
 
@@ -31,6 +30,4 @@ public class LinksImagePage {
 
         return responseCode;
     }
-
-
 }

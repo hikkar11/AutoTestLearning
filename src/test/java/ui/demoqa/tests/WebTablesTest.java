@@ -41,5 +41,4 @@ public class WebTablesTest extends BaseTest {
         Assertions.assertTrue(EqualsBuilder.reflectionEquals(expectedAttributes, actualAttributes));
 
     }
-
 }
