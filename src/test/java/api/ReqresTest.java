@@ -10,6 +10,7 @@ import api.pojo.registerPojo.UnSuccessReg;
 import api.pojo.userPojo.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.time.Clock;
@@ -254,7 +255,7 @@ public class ReqresTest {
         Assertions.assertEquals("Missing password", unsuccessLogin.getError());
     }
 
-    @Test
+    @RepeatedTest(3)
     public void delayedRequestTest(){
 
         long startTime = System.currentTimeMillis();
