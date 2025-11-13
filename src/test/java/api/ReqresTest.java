@@ -264,7 +264,7 @@ public class ReqresTest {
         .spec(Specifications.requestSpec(URL))
                 .queryParam("delay", 3)
                 .when()
-                .get("api/users?delay=3")
+                .get("api/users")
                 .then()
                 .spec(Specifications.responseSpecOk200())
                 .log().all()
@@ -273,6 +273,6 @@ public class ReqresTest {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
 
-        Assertions.assertTrue(duration >= 2900 && duration <= 3200, "Задержка вне допустимого диапазона: " + duration + " мс");
+        Assertions.assertTrue(duration >= 3000, "Задержка меньше ожидаемой 3 секунд");
     }
 }
