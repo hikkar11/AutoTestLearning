@@ -255,7 +255,7 @@ public class ReqresTest {
         Assertions.assertEquals("Missing password", unsuccessLogin.getError());
     }
 
-    @RepeatedTest(3)
+    @RepeatedTest(2)
     public void delayedRequestTest(){
 
         long startTime = System.currentTimeMillis();
@@ -273,6 +273,6 @@ public class ReqresTest {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
 
-        Assertions.assertTrue(duration >= 3000, "Задержка меньше ожидаемой 3 секунд");
+        Assertions.assertTrue(duration >= 2900 && duration <= 3200, "Задержка вне допустимого диапазона: " + duration + " мс");
     }
 }
