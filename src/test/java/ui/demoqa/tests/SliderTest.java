@@ -1,6 +1,7 @@
 package ui.demoqa.tests;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.demoqa.pages.SliderPage;
 
@@ -9,6 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class SliderTest extends BaseTest{
 
     @Test
+    @Tag("regression")
     public void sliderTest(){
 
         open("https://demoqa.com/slider");

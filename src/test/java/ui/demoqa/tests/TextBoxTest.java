@@ -2,6 +2,7 @@ package ui.demoqa.tests;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.demoqa.pages.ElementsPage;
 import ui.demoqa.pages.MainPage;
@@ -15,6 +16,8 @@ public class TextBoxTest extends BaseTest {
     private final static String BASE_URL = "https://demoqa.com/";
 
     @Test
+    @Tag("smoke")
+    @Tag("regression")
     public void ShowCorrectData(){
         MainPage mainPage = new MainPage(BASE_URL);
         mainPage.clickButton();

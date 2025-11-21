@@ -11,6 +11,7 @@ import api.pojo.userPojo.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.time.Clock;
@@ -26,6 +27,7 @@ public class ReqresTest {
     private final static String URL = "https://reqres.in/";
 
     @Test
+    @Tag("regression")
     public void checkFormatImageTest(){
 
         List<UserData> users = given()
@@ -41,6 +43,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void checkUserDataTest(){
 
         UserData userData = new UserData
@@ -60,6 +63,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void userNotFoundTest(){
 
         given()
@@ -72,6 +76,8 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("smoke")
+    @Tag("regression")
     public void successRegTest(){
 
         Integer id = 4;
@@ -96,6 +102,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void unsuccessRegTest(){
 
         Register user = new Register("sydney@fife", "");
@@ -113,6 +120,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void sortedYearsTest(){
 
         List<ColorsData> colors = given()
@@ -131,6 +139,8 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("smoke")
+    @Tag("regression")
     public void checkActualColorData(){
 
         ColorsData expected = new ColorsData(2, "fuchsia rose", 2001,  "#C74375", "17-2031");
@@ -148,6 +158,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void colorsNotFoundTest(){
 
         given()
@@ -160,6 +171,8 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("smoke")
+    @Tag("regression")
     public void userCreatedTest(){
 
         UserCreateData userCreateData =  new UserCreateData("morpheus", "leader");
@@ -183,6 +196,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void userUpdatedTimeTest(){
 
         UpdateUserData updateUserData = new UpdateUserData("morpheus", "leader");
@@ -206,6 +220,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void deleteUserTest(){
 
         given()
@@ -218,6 +233,8 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("smoke")
+    @Tag("regression")
     public void successLoginTest(){
 
         String token = "QpwL5tke4Pnpja7X4";
@@ -239,6 +256,7 @@ public class ReqresTest {
     }
 
     @Test
+    @Tag("regression")
     public void unSuccessLoginTest(){
 
         Login login = new Login( "eve.holt@reqres.in", "");
@@ -256,6 +274,7 @@ public class ReqresTest {
     }
 
     @RepeatedTest(2)
+    @Tag("regression")
     public void delayedRequestTest(){
 
         long startTime = System.currentTimeMillis();
